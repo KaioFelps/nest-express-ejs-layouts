@@ -1,11 +1,15 @@
-var express = require('express')
-  , expressLayouts = require('..')
-  , request = require('supertest')
-  , should = require('should')
+import express, { type Application } from "express"
+import request from "supertest"
+import { middleware as expressLayouts } from "../lib/index.js"
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-var app, req
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-beforeEach(function() {
+let app: Application;
+
+beforeEach(function () {
   app = express()
   app.use(expressLayouts)
   app.set('env', 'test')
@@ -13,35 +17,35 @@ beforeEach(function() {
   app.set('views', __dirname + '/fixtures')
 })
 
-describe('simple layout', function() {
-  it('should look for template named "layout" by default', function(done) {
-    app.use(function(req, res){
+describe('simple layout', function () {
+  it('should look for template named "layout" by default', function (done) {
+    app.use(function (req, res) {
       res.render(__dirname + '/fixtures/view.ejs')
     })
 
     request(app).get('/').expect('<p>hi</p>', done)
   })
 
-  it('should use the layout specified in app.set("layout", "layoutName")', function(done) {
+  it('should use the layout specified in app.set("layout", "layoutName")', function (done) {
     app.set('layout', 'otherLayout')
-    app.use(function(req, res){
+    app.use(function (req, res) {
       res.render(__dirname + '/fixtures/view.ejs')
     })
 
     request(app).get('/').expect('<div>hi</div>', done)
   })
 
-  it('should use the layout specified in the view options regarless of app.set("layout", ...)', function(done) {
+  it('should use the layout specified in the view options regarless of app.set("layout", ...)', function (done) {
     app.set('layout', false)
-    app.use(function(req, res){
+    app.use(function (req, res) {
       res.render(__dirname + '/fixtures/view.ejs', { layout: 'otherLayout' })
     })
 
     request(app).get('/').expect('<div>hi</div>', done)
   })
 
-  it('should pass variables on to layouts', function(done) {
-    app.use(function(req, res) {
+  it('should pass variables on to layouts', function (done) {
+    app.use(function (req, res) {
       res.render(__dirname + '/fixtures/view.ejs', {
         layout: 'layoutWithMultipleContent',
         foo: 'foo',
@@ -52,8 +56,8 @@ describe('simple layout', function() {
     request(app).get('/').expect('bar\\/foo\nhi', done)
   })
 
-  it('should pass res.locals on to layouts', function(done) {
-    app.use(function(req, res) {
+  it('should pass res.locals on to layouts', function (done) {
+    app.use(function (req, res) {
       res.locals = {
         layout: 'layoutWithMultipleContent',
         foo: 'one',
