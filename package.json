@@ -42,8 +42,7 @@
   "scripts": {
     "build": "tsup lib/index.ts --format cjs,esm --dts --minify --tsconfig tsconfig.build.json && tsc -p tsconfig.build.json --emitDeclarationOnly",
     "test": "tsx node_modules/mocha/bin/mocha.js 'test/**/*.{ts,js}' --exit",
-    "prepublishOnly": "npm run test && npm run build",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run test && npm run build"
   },
   "repository": "git://github.com/kaiofelps/nest-express-ejs-layouts.git"
 }
