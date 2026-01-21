@@ -7,9 +7,22 @@
     "layout",
     "ejs"
   ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "version": "2.5.1",
-  "main": "lib/express-layouts.js",
-  "dependencies": {},
   "devDependencies": {
     "@types/express": "*",
     "@types/mocha": "^10.0.10",
@@ -27,7 +40,9 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
+    "build": "tsup lib/index.ts --format cjs,esm --dts --minify --tsconfig tsconfig.build.json && tsc -p tsconfig.build.json --emitDeclarationOnly",
     "test": "tsx node_modules/mocha/bin/mocha.js 'test/**/*.{ts,js}' --exit",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "repository": "git://github.com/kaiofelps/nest-express-ejs-layouts.git"
 }
