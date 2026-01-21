@@ -27,7 +27,7 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "tsx node_modules/mocha/bin/mocha.js 'test/**/*.{ts,js}' --exit",
   },
   "repository": "git://github.com/kaiofelps/nest-express-ejs-layouts.git"
 }
