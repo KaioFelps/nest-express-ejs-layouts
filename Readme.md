@@ -1,21 +1,21 @@
 # express-ejs-layouts
 
-> Layout support for ejs in express
+> Layout support for ejs in nestjs + express with async rendering
 
-[![npm version](https://badge.fury.io/js/express-ejs-layouts.svg)](https://badge.fury.io/js/express-ejs-layouts)
-[![build status](https://secure.travis-ci.org/soarez/express-ejs-layouts.svg)](http://travis-ci.org/Soarez/express-ejs-layouts)
+[![Tests](https://github.com/KaioFelps/nest-express-ejs-layouts/actions/workflows/tests.yaml/badge.svg)](https://github.com/KaioFelps/nest-express-ejs-layouts/actions/workflows/tests.yaml)
+[![GitHub release](https://img.shields.io/github/v/release/KaioFelps/nest-express-ejs-layouts)](https://github.com/KaioFelps/nest-express-ejs-layouts/releases)
 
 ## Installation
 
 ```sh
-$ npm install express-ejs-layouts
+$ npm install "https://github.com/KaioFelps/nest-express-ejs-layouts/releases/download/v1.0.0/nest-express-ejs-layouts-1.0.0.tgz"
 ```
 
 ## Example
 
 Check the example folder.
 
-1. `git clone https://github.com/soarez/express-ejs-layouts.git`
+1. `git clone https://github.com/kaiofelps/nest-express-ejs-layouts.git`
 2. `cd express-ejs-layouts`
 3. `npm install`
 4. `node example`
@@ -23,18 +23,18 @@ Check the example folder.
 
 ## Usage
 
-```javascript
-var express = require('express');
-var expressLayouts = require('express-ejs-layouts');
+```typescript
+import express from "express";
+import {middleware as expressLayouts } from "nest-express-ejs-layouts";
 
-var app = express();
+const app = express();
 
 app.set('view engine', 'ejs');
 
 app.use(expressLayouts);
 
 app.get('/', function(req, res) {
-  var locals = {
+  const locals = {
     title: 'Page Title',
     description: 'Page Description',
     header: 'Page Header'
