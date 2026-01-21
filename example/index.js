@@ -9,9 +9,9 @@ app.set('view engine', 'ejs');
 app.set('layout extractScripts', true)
 app.set('layout extractStyles', true)
 
-app.use(expressLayouts);
+app.use(expressLayouts.middleware);
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.locals = {
     title: 'Example',
     message: 'This is a message'
@@ -22,6 +22,6 @@ app.get('/', function(req, res) {
 });
 
 var port = 3000;
-app.listen(port, function() {
+app.listen(port, function () {
   console.log('Listening on http://localhost:%s/', port);
 });
