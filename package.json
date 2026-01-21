@@ -1,7 +1,10 @@
 {
-  "author": "Igor Soarez <igorsoarez@gmail.com>",
-  "name": "express-ejs-layouts",
-  "description": "Layout support for ejs in express.",
+  "author": "Kaio Felipe",
+  "contributors": [
+    "Igor Soarez <igorsoarez@gmail.com> (original author)"
+  ],
+  "name": "nest-express-ejs-layouts",
+  "description": "Fork from 'express-ejs-layouts' with support for NestJs + express with async.",
   "keywords": [
     "express",
     "layout",
@@ -22,7 +25,7 @@
     "README.md",
     "LICENSE"
   ],
-  "version": "2.5.1",
+  "version": "1.0.0",
   "devDependencies": {
     "@types/express": "*",
     "@types/mocha": "^10.0.10",
