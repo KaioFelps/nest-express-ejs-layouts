@@ -1,7 +1,8 @@
 name: Test Suits
 
 on:
-    workflow_call: 
+    push: 
+    pull_request: 
 
 jobs:
     run_tests:
