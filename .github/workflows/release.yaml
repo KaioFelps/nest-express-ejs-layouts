@@ -1,0 +1,34 @@
+name: Create Release with Build
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: npm
+      
+      - run: npm ci
+      - run: npm run build
+      
+      - name: Create tarball
+        run: npm pack
+      
+      - name: Upload tarball to release
+        uses: softprops/action-gh-release@v1
+        with:
+            files: '*.tgz'
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
